@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+
+	<meta charset="utf-8">
+	<title>Souls Video Games</title>
+	<style type="text/css">
+		td#menu{
+			color: white;
+			font-size: 20px;
+			font-family: "Montserrat";
+			width: 350px;
+			height: 95px;
+			background-color: black;
+			transition: font-size;
+			transition-duration: 0.3s;
+		}
+
+		td#menu:hover{
+			font-size: 25px;
+			cursor: pointer;
+		}
+
+		td#games{
+			width: 500px;
+			height: 500px;
+		}
+
+		img:hover{
+			cursor: pointer;
+		}
+
+		button{
+			color: white;
+			background-color: black;
+			font-size: 20px;
+			font-family: "Montserrat";
+			height: 50px;
+			width: 500px;
+			transition: font-size;
+			transition-duration: 0.3s;
+			border: 0;
+
+		}
+
+		button:hover{
+			font-size: 25px;
+			cursor: pointer;
+		}
+
+		@keyframes zooming{
+			from{background-size: 2500px;}
+			50%{background-size: 2600px;}
+			to{background-size: 2500px;}
+		}
+
+		@keyframes appear{
+			from{background-size: 2500px;}
+			50%{background-size: 2900px;}
+			to{background-size: 2500px;} 
+		}
+
+		.appearing{
+			animation: appear 1s;
+		}
+	</style>
+
+	<script src="soulsgames.js"></script>
+</head>
+<body style="margin: 0;">
+
+<!-- 	МЕНЮ -->
+	<div style="background-color: black; height: 100px">
+		<img src="logo.png" style="width: 350px; height: 100px; background-color: yellow">
+		<table style="width: 900px; text-align: center; display: inline-block; float: right;">
+			<tr>
+				<td id="menu">ГЛАВНАЯ</td>
+				<td id="menu">ДРУГИЕ ИГРЫ</td>
+				<td id="menu">КОНТАКТЫ</td>
+				<td id="menu">ТОЧКИ СТУДИИ</td>
+			</tr>
+		</table>
+	</div>
+<!--          -->
+
+<!-- Souls игры -->
+	<div style="background-image: url(ds_bckg.jpg); background-position: top; background-size: 2500px; background-attachment: fixed; height: 900px; animation: zooming 5s infinite;">
+		<table style="width: 2000px; margin: auto; padding-top: 150px;">
+			<tr>
+				<td style="background-image: url(demon_souls.png); background-size: cover; background-position: center;" id="games"></td>
+				<td style="background-image: url(dsr.jpg); background-size: cover; background-position: top;" id="games"></td>
+				<td style="background-image: url(ds2.jpg); background-size: cover; background-position: top;" id="games"></td>
+				<td style="background-image: url(ds3.jpg); background-size: cover; background-position: top;" id="games"></td>
+			</tr>
+			<tr>
+				<td><button>КУПИТЬ</button></td>
+				<td><button>КУПИТЬ</button></td>
+				<td><button>КУПИТЬ</button></td>
+				<td><button>КУПИТЬ</button></td>
+			</tr>
+			<tr>
+				<td><button>ПОДРОБНЕЕ</button></td>
+				<td><button>ПОДРОБНЕЕ</button></td>
+				<td><button>ПОДРОБНЕЕ</button></td>
+				<td><button>ПОДРОБНЕЕ</button></td>
+			</tr>
+		</table>
+	</div>
+<!--          -->
+
+
+<!-- Sekiro -->
+	<div style="background-image: url(sekiro.jpg); background-position: top; background-size: 2500px; background-attachment: fixed; height: 1200px;" id="sekiro">
+
+		<button style="margin-top: 500px; width: 40px; height: 200px; background-color: rgba(0, 0, 0, 0.5);" id="s <" onclick="trans(this)"><</button>
+		<button style="float: right; margin-top: 500px; width: 40px; height: 200px; background-color: rgba(0, 0, 0, 0.5);" id="s >" onclick="trans(this)">></button>
+
+		<table style="width: 2238px; padding-top: 400px;">
+			<tr>
+				<td><button style="width: 2234px">КУПИТЬ</button></td>
+			</tr>
+			<tr>
+				<td><button style="width: 2234px">ПОДРОБНЕЕ</button></td>
+			</tr>
+		</table>
+	</div>
+<!--          -->
+
+<!-- Elden Ring -->
+	<div style="background-image: url(er.jpg); background-position: top; background-size: 2500px; background-attachment: fixed; height: 1200px;" id="eldenring">
+		<button style="margin-top: 500px; width: 40px; height: 200px; background-color: rgba(0, 0, 0, 0.5);" id="er <" onclick="trans(this)"><</button>
+		<button style="float: right; margin-top: 500px; width: 40px; height: 200px; background-color: rgba(0, 0, 0, 0.5);" id="er >" onclick="trans(this)">></button>
+		<table style="width: 2238px; padding-top: 390px;">
+			<tr>
+				<td><button style="width: 2234px">КУПИТЬ</button></td>
+			</tr>
+			<tr>
+				<td><button style="width: 2234px">ПОДРОБНЕЕ</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+<!--          -->
+
+
+<!-- animation: zooming 5s infinite; -->
