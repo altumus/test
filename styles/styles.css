@@ -1,0 +1,15 @@
+#sec1, #sec2{
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+#sec1{
+    background-image: url('../images/edu-log.jpg');
+    background-size: 100%;
+}
+
+#sec2{
+    background-image: url('../images/learn.png');
+    background-size: 100%;
+}
