@@ -1,15 +1,75 @@
-#sec1, #sec2{
+#sec1, #sec2, #sec3{
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #sec1{
     background-image: url('../images/edu-log.jpg');
-    background-size: 100%;
 }
 
 #sec2{
     background-image: url('../images/learn.png');
-    background-size: 100%;
+}
+
+#sec3{
+    background-image: url('../images/sec3.jpg');
+}
+
+.title-div{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    text-align: center;
+    display: block;
+    font-size: 35px;
+    font-family: 'Montserrat';
+    background-color: rgba(41,49,51,0.5);
+    width: 50%;
+    padding: 20px;
+    color: white;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form input{
+    font-family: 'Montserrat';
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 0;
+    padding: 5px;
+}
+
+.warning{
+    margin-top: 20px;
+    background-color: rgba(41,49,51,0.5);
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    font-family: 'Montserrat';
+}
+
+.list{
+    background-color: rgba(41,49,51,0.5);
+    font-family: 'Montserrat';
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    
+}
+
+.list-container{
+    max-height: 305px;
+    overflow: auto;
+    margin-top: 20px;
 }
