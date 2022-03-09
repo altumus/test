@@ -6,15 +6,15 @@
 }
 
 #sec1{
-    background-image: url('../images/edu-log.jpg');
+    background-image: url('../images/sec1.jpg');
 }
 
 #sec2{
-    background-image: url('../images/learn.png');
+    background-image: url('../images/sec2.jpg');
 }
 
 #sec3{
-    background-image: url('../images/sec3.jpg');
+    background-image: url('../images/nature.jpg');
 }
 
 .title-div{
@@ -65,7 +65,6 @@
     margin-top: 10px;
     padding: 5px;
     text-align: center;
-    
 }
 
 .list-container{

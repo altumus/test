@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>RepON</title>
+        <title>Agroholding</title>
 
         <link href="scripts/fullpage.css" rel="stylesheet">
         <link href="styles/styles.css" rel="stylesheet">
@@ -35,29 +35,39 @@
         <div id="fullpage">
             <div class="section" id="sec1">
                 <div class="title-div">
-                    <span class="title wow animate__animated animate__fadeInDown">Репетиторы</span>
+                    <span class="title wow animate__animated animate__fadeInDown">Agroholding</span>
                 </div>
             </div>
             <div class="section" id="sec2">
                 <!-- <h1 class="wow animate__animated animate__fadeInDown">hello</h1> -->
                 <div class="title-div">
-                    <span class="title wow animate__animated animate__fadeInDown">Список репетиторов</span>
+                    <span class="title wow animate__animated animate__fadeInDown">Sowing list</span>
                 </div>
                 <div class="form">
                     <form method="POST">
-                        <input type="submit" value="Получить список преподавателей" name="conn">
+                        <input type="submit" value="Get sowing list" name="conn">
                     </form>
                     <?php
                         $server = "localhost";
-                        $database = "tutor";
+                        $database = "farm";
                         $user = "root";
                         $password = "";
 
                         $connection = mysqli_connect($server, $user, $password, $database);
                         if(isset($_POST['conn'])){
                             if($connection){
-                                echo "<div class='warning'>Соединение с базой данных прошло успешно !</div>";
-                                $sql = 'SELECT tutor_surname, subject_name  FROM `tutors` ORDER BY subject_name';
+                                echo "<div class='warning'>Connection success !</div>";
+                                $sql = 'SELECT 
+                                fields.field_place, 
+                                fields.`field_area(ga)`, 
+                                cultures.culture_name, 
+                                fields.field_id,
+                                sowing.Year,
+                                cultures.`culture_price(per/cent)` * fields.`field_area(ga)` 
+                                FROM sowing 
+                                INNER JOIN fields ON sowing.Field = fields.field_id 
+                                INNER JOIN cultures ON sowing.Culture = cultures.culture_id
+                                ORDER BY sowing.Year';
                                 
                                 $result = mysqli_query($connection, $sql);
 
@@ -68,7 +78,14 @@
                                 foreach ($rows as $row) {
                                     ?>
                                     <div class="list">
-                                        <span>Преподаватель: <?=$row[0]?> Предмет: <?=$row[1]?></span>
+                                        <span>
+                                            Field number: <?=$row[3]?> 
+                                            <br>Field location: <?=$row[0]?> 
+                                            <br>Area(ga): <?=$row[1]?> 
+                                            <br>Culture: <?=$row[2]?> 
+                                            <br>Year: <?=$row[4]?>
+                                            <br>Total price: <?=$row[5]?> rub
+                                        </span>
                                     </div>
                                     <?php
                                 }
@@ -80,7 +97,7 @@
                             
                             }
                             else{
-                                echo "<div class='warning'>При подключении к базе данных произошла ошибка !</div>";
+                                echo "<div class='warning'>Something went wrong !</div>";
                             }
                         }
                     ?>
@@ -89,25 +106,12 @@
 
             <div class="section" id="sec3">
                 <div class="title-div">
-                    <span class="title wow animate__animated animate__fadeInDown">Список занятий</span>
+                    <span class="title wow animate__animated animate__fadeInDown">Price for sow in Spring</span>
                 </div>
                 <?php
                     if(isset($_POST['conn'])){
                         if($connection){
-                            $sql = "
-                                SELECT
-                                `students`.`student_surname`,
-                                `tutors`.`tutor_surname`,
-                                `tutors`.`subject_name`,
-                                lesson_hours, 
-                                lesson_date 
-                                FROM `lessons`
-                                
-                                INNER JOIN `tutors` ON `lessons`.`tutor_id` = `tutors`.`tutor_id` 
-                                INNER JOIN `students` ON `lessons`.student_id = `students`.student_id 
-                                WHERE `lessons`.`lesson_date` LIKE '2022-02-%' 
-                                ORDER BY `tutors`.`subject_name`
-                            ";
+                            $sql = 'SELECT * FROM cultures WHERE cultures.culture_season = 2';
 
                             $result = mysqli_query($connection, $sql);
 
@@ -118,37 +122,17 @@
                             foreach($rows as $row){
                                 ?>
                                 <div class="list">
-                                    <span>Ученик: <?=$row[0]?> Преподаватель: <?=$row[1]?> Предмет: <?=$row[2]?> Часы: <?=$row[3]?> Дата: <?=$row[4]?></span>
+                                    <span>
+                                        Culture: <?=$row[1]?> 
+                                        <br>Season: <?=$row[2]?> 
+                                        <br>Price per centner: <?=$row[3]?>
+                                    </span>
                                 </div>
                                 <?php
                             }
                             ?>
                             </div>
                             <?php
-                                $sql = 
-                                "
-                                    SELECT 
-                                    `tutors`.`tutor_surname`, 
-                                    SUM(`lessons`.`lesson_hours`) as 'Hours', 
-                                    `tutors`.`hour_price` as 'price',
-                                    SUM(`lessons`.`lesson_hours`) * `tutors`.`hour_price`  
-                                    FROM `tutors`
-                                    
-                                    INNER JOIN `lessons` ON `lessons`.`tutor_id` = `tutors`.`tutor_id`
-                                    WHERE `tutors`.`tutor_surname` = 'Zubova' AND `lessons`.`lesson_date` LIKE '2022-01-%'
-                                    GROUP BY `tutors`.`hour_price`
-                                
-                                ";
-                                $result = mysqli_query($connection, $sql);
-                               
-                                $rows = mysqli_fetch_all($result);
-
-
-                                ?>
-                                <div class="list-container">
-                                    <div class="list">Преподаватель: <?=$rows[0][0]?> Часов отработано: <?=$rows[0][1]?> Стоимость за час: <?=$rows[0][2]?> Итог за янаварь: <?=$rows[0][3]?></div>
-                                </div>
-                                <?php
                         }
                     }
                 ?>
